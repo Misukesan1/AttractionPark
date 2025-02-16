@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Appli</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Contenu de la sidebar -->
+        <aside class="sidebar">
+            <h1 class="app-title">Mon Appli</h1>
+            <form id="createNewParc">
+                <div class="new-park">
+                    <input type="text" placeholder="Nom du parc">
+                    <button type="submit" class="micro-btn bg-blue">+</button>
+                </div>
+            </form>
+
+            <!-- Liste des parcs crées -->
+            <div class="parks-container">
+            </div>
+
+            <!-- Autre actions sur le parc -->
+            <button class="sidebar-btn sidebar-actif">Informations du parc</button>
+            <button class="sidebar-btn">Créer une attraction</button>
+            <button class="sidebar-btn">Vendre des tickets</button>
+        </aside>
+        
+        <!-- Contenu principal -->
+        <main class="content">
+
+            <!-- Container dynamique -->
+            <section class="content-main">
+
+                <!-- Contenu Informations du parc -->
+                <div id="InfoParc" style="display: none;">
+
+                    <form id="TitleParc" class="park-title-form">
+                        <input type="text" placeholder="Titre du parc">
+                    </form>
+                    <div class="validation-message" id="validationFormParcEditMessage"></div>
+
+                    <div class="park-info-container">
+                        <h3>Informations du Parc</h3>
+                        <div class="park-info">
+                            <p><strong>Nom du Parc :</strong> <span id="park-name">Mon Parc</span></p>
+                            <p><strong>Nombre total d'attractions :</strong> <span id="attractions-total">5</span></p>
+                            <p><strong>Tickets Vendus :</strong> <span id="tickets-sold">0</span></p>
+                            <p><strong>Revenu Total :</strong> <span id="total-revenue">0 €</span></p>
+                        </div>
+                    </div>
+
+                    <div class="attractions-container">
+    
+                        <!-- <div class="card">
+                            <div class="card-title">Nom de l'Attraction</div>
+                            <div class="card-info">Capacité maximale: <span>100</span></div>
+                            <div class="card-info">Visiteurs actuels: <span>50</span></div>
+                            <div class="card-info">Popularité: <span>4</span></div>
+                            <button class="delete-btn">Supprimer</button>
+                        </div>
+
+                        <div class="no-attractions">Aucune attraction disponible</div> -->
+    
+                    </div>
+
+                </div>
+
+                <!-- Contenu si pas de parc crées -->
+                <div id="NoParcMessage" style="display: none;">
+                    <p class="no-parc-text">Aucun parc n'a encore été créé.</p>
+                </div>
+
+                <!-- Contenu ajouter une attraction -->
+                <div id="AddAttraction" style="display: none;">
+                    <h2 class="section-title">Créer une Attraction</h2>
+                    <form id="createNewAttraction" class="attraction-form">
+                        <div class="form-group">
+                            <label for="attractionName">Nom de l'attraction</label>
+                            <input type="text" id="attractionName" placeholder="Nom de l'attraction">
+                        </div>
+                        <div class="form-group">
+                            <label for="capacity">Capacité maximale</label>
+                            <input type="number" id="capacity" placeholder="Nombre maximum">
+                        </div>
+                        <div class="form-group">
+                            <label for="popularity">Popularité</label>
+                            <input type="number" id="popularity" step="0.1" min="0" max="5" placeholder="Note sur 5">
+                        </div>
+                        <button type="submit" class="submit-btn">Ajouter l'attraction</button>
+                    </form>
+                    <div class="validation-message" id="validationFormAttractionMessage"></div>
+                </div>
+
+                <!-- Contenu vendre des tickets -->
+                <div id="VendreTickets" style="display: none;">
+                    <h2 class="section-title">Vendre des Tickets</h2>
+                    <form id="buyTicketForm" class="attraction-form">
+                        <!-- <div class="form-group">
+                            <label for="selectAttraction">Choisir une attraction</label>
+                            <select id="selectAttraction">
+                                <option value="" disabled selected>Sélectionnez l' attraction</option>
+                                <option value="rollercoaster">Grand huit</option>
+                                <option value="ferriswheel">Grande roue</option>
+                                <option value="hauntedhouse">Maison hantée</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketQuantity">Nombre de personnes à ajouter</label>
+                            <input type="number" id="ticketQuantity" placeholder="Nombre de personnes">
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketPrice">Prix du ticket</label>
+                            <input type="number" id="ticketPrice" step="0.01" placeholder="Prix par ticket">
+                        </div>
+                        <button type="submit" class="submit-btn">Vendre tickets</button> -->
+                    </form>
+                    <div class="validation-message" id="validationFormTicketMessage"></div>
+                    <!-- <div class="card-info-attraction">
+                        <div class="card-title">Nom de l'Attraction</div>
+                        <div class="card-info">Capacité maximale: <span>100</span></div>
+                        <div class="card-info">Visiteurs actuels: <span>50</span></div>
+                        <div class="card-info">Popularité: <span>4</span></div>
+                    </div> -->
+                </div>
+
+            </section>
+
+            <!-- Contenu Information des messages console -->
+            <section class="content-info">
+                <p></p>
+            </section>
+            
+        </main>
+    </div>
+
+    <!-- Alerte de bénéfices du park -->
+    <div class="overlay"></div>
+    <div id="victoryAlert" class="victory-alert">
+        <div class="alert-content">
+            <h2>🎉 Félicitations ! 🎉</h2>
+            <p>Votre parc a atteint 100 000€ de bénéfices ! Continuez à faire rêver vos visiteurs !</p>
+            <button id="closeVictoryAlert" class="close-btn">Fermer</button>
+        </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
